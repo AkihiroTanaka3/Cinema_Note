@@ -1,24 +1,27 @@
-# README
+# <Cinema Note>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+映画に関する情報の収集、共有、発信
 
-Things you may want to cover:
+### テーマを選んだ理由
+映画が好きなので作ってみようと思いました
 
-* Ruby version
+### ターゲットユーザ
+映画が好きな人
 
-* System dependencies
+### 主な利用シーン
+見た映画をレビューする
 
-* Configuration
+## 設計書
+未定
 
-* Database creation
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- https://www.themoviedb.org/?language=ja-JP  (TMDB API)
