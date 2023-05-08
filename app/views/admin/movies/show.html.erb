@@ -1,2 +1,18 @@
-<h1>Admin::Movies#show</h1>
-<p>Find me in app/views/admin/movies/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-db-2">
+      <% if @movie['poster_path'] %>
+        <p><%= image_tag 'https://image.tmdb.org/t/p/w500' + @movie['poster_path'],class: "card-size" %></p>
+      <% end %>
+    </div>
+    <div class="col-db-8">
+      <p><%= @movie['title'] %></p>
+      <p><%= @movie['release_date'] %></p>
+      <p>ジャンル:<%= @movie["genres"][0]["name"] %></p>
+      <p><%= @movie['overview'] %></p>
+      <%#= link_to "投稿ページへ", new_post_path(movie_id: @movie['id']) %>
+      <%= link_to "保存", movies_path(movie: @movie), method: :post %>
+    </div>
+  </div>
+</div>
+
