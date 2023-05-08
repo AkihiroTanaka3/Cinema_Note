@@ -1,13 +1,14 @@
 <header class="sticky-top">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/"> CInema Note</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand ml-5" href="/"> CInema Note</a>
+      <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav me-auto">
-          
+
           <!--ユーザーがログインしているとき-->
           <% if user_signed_in? %>
           <li class="nav-item">
@@ -18,16 +19,20 @@
           <div class="mt-2 ml-3 text-secondary">
             <i class="fas fa-smile fa-spin fa-sm"></i> <strong><%= current_user.name %></strong> , Welcome！
           </div>
-          
+
           <!--管理者がログインしているとき-->
           <% elsif admin_signed_in? %>
           <li class="nav-item">
             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-dark' do %>
             <i class="fas fa-sign-out-alt"></i> Log out
             <% end %>
+          <li class="nav-item">
+            <%= link_to admin_movies_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-sign-out-alt"></i> new
+            <% end %>
           </li>
           <%= link_to "管理者", admin_root_path, class:"mt-2 ml-3 text-secondary" %>
-          
+
           <!--ログインしていないとき-->
           <% else %>
           <li class="nav-item">
@@ -46,6 +51,12 @@
           <input class="form-control me-sm-2" type="search" placeholder="Search">
           <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
+        <!--<div class="form-group">-->
+        <!-- <%#= form_with url: search_posts_path, local: true, method: :get, class: "form-inline" do |f| %>-->
+        <!--  <%#= f.text_field :keyword, class: "form-control me-sm-3", placeholder: "キーワード検索" %>-->
+        <!--  <%#= f.submit "Search", class: "btn btn-info btn-sm" %>-->
+        <!-- <%# end %>-->
+        <!--</div>-->
       </div>
     </div>
   </nav>

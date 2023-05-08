@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # 管理者
   namespace :admin do
     root to: 'homes#top'
-    resources :movies, only: [:index, :show, :edit, :create, :destroy, :upodate]
+    resources :movies, only: [:index, :new, :show, :edit, :create, :destroy, :upodate]
     resources :genres, only: [:index, :edit, :create, :update]
     resources :users, only: [:index, :edit, :show, :update]
 

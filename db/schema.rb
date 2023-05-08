@@ -61,10 +61,10 @@ ActiveRecord::Schema.define(version: 2023_05_05_025346) do
   create_table "movies", force: :cascade do |t|
     t.string "name"
     t.integer "read_count", default: 0, null: false
-    t.integer "cast_id"
     t.string "year"
     t.text "overview"
-    t.integer "genre_id"
+    t.string "genre_name"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

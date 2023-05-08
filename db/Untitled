@@ -1,0 +1,4 @@
+@movie["genres"][0]["name"]
+genre_name
+ボタンをつけて保存する
+params[:movie]
