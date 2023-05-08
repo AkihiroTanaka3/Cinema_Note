@@ -1,7 +1,7 @@
 <div class="container">
-  
+
   <div class="row text-center">
-    <div class="col-db-10 my-3">
+    <div class="col-db-10 my-5">
       <div class="search">
         <%= form_tag(admin_movies_path, method: :get) do %>
           <%= search_field_tag :looking_for, nil, placeholder: 'Movie Title...' , :size => "40*40" %>
@@ -12,14 +12,14 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <% @movies.each do |movie| %>
     <div class="col-md-3">
       <div class = "movie-data">
         <p><%= movie['title'] %></p>
-        <%= link_to movie_path(movie['id']) do %>
-          <% if movie['poster_path'] %>   
+        <%= link_to admin_movie_path(movie['id']) do %>
+          <% if movie['poster_path'] %>
             <p><%= image_tag 'https://image.tmdb.org/t/p/w342' + movie['poster_path'],class: "card-img" %></p>
           <% end %>
         <% end %>
@@ -28,9 +28,11 @@
     </div>
     <% end %>
   </div>
-  
+
   <div class="row">
-    <h5><%= paginate @movies %></h5>
+    <div class="my-5 text-center" style="max-width: 300px; margin: 0 auto;">
+      <h3><%= paginate @movies %></h3>
+    </div>
   </div>
-  
+
 </div>
