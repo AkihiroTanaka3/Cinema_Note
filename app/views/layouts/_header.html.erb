@@ -12,6 +12,10 @@
           <!--ユーザーがログインしているとき-->
           <% if user_signed_in? %>
           <li class="nav-item">
+          <%= link_to movies_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-film"></i> Movies
+          <% end %>
+          <li class="nav-item">
           <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-dark' do %>
             <i class="fas fa-sign-out-alt"></i> Log out
           <% end %>
