@@ -1,7 +1,11 @@
 <div class="contaiber">
   <div class="row">
     <div class="col-md-4 offset-sm-1 my-5">
-      <%= image_tag 'https://image.tmdb.org/t/p/w342' + @movie.image, class: 'card-img' %>
+      <div class="card border-light mb-3">
+        <div class="card-header">
+        <%= image_tag 'https://image.tmdb.org/t/p/w342' + @movie.image, class: 'card-img' %>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
       <h2 class="mt-5"><%= @movie.name %></h2>
@@ -28,28 +32,46 @@
           <p><%= form.select :rate, [1, 2, 3, 4, 5] %></p>
         </div>
 
-        <div class="field">
-          <%= form.label :感想を書く %>
-          <p><%= form.text_area :body, cols: 80, rows: 10,placeholder: "コメントをここに" %></p>
+        <%= form.label :感想を書く %>
+        <div class="card border-light mb-3">
+          <div class="card-header">
+            <div class="field">
+              <p><%= form.text_area :body, cols: 80, rows: 7, placeholder: "コメントをここに",class:"form-control-plaintext" %></p>
+            </div>
+          </div>
         </div>
+        
 
         <div class="actions">
-          <%= form.submit 'Create Review', class: 'btn btn-outline-primary' %>
+          <%= form.submit 'Create Review', class: 'btn btn-outline-light' %>
         </div>
       <% end %>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-10 text-center">
+    <div class="col-md-10 offset-sm-1 text-center">
       <h2>レビュー一覧</h2>
-        <% @reviews.each do |review| %>
-          <div>
-            <p><%= review.user.name %></p>
-            <p><%= review.rate %>/5点</p>
-            <p><%= review.body %></p>
-            <%= link_to 'Delete', movie_destroy_path(@movie, review), method: :delete, data: { confirm: '削除しますか？' } %>
-          </div>
-        <% end %>
+      
+      <table class="table table-hover">
+        <thead>
+          <tr class="table-active">
+            <th scope="row">ユーザー名</th>
+            <th scope="row">評価</th>
+            <th scope="row">コメント</th>
+            <th scope="row">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reviews.each do |review| %>
+            <tr class="table-dark">
+              <td><%= review.user.name %></td>
+              <td><%= review.rate %>/5点</td>
+              <td style="word-wrap: break-word; width: 700px;"><%= review.body %></td>
+              <td><%= link_to '削除', movie_destroy_path(@movie, review), method: :delete, data: { confirm: '削除しますか？' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
