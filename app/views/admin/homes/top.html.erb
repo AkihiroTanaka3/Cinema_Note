@@ -1,3 +1,14 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center my-5">
+    <% @movies.each do |movie| %>
+      <div class="col-md-3 my-3 text-center">
+        <div>
+          <%= image_tag 'https://image.tmdb.org/t/p/w342' + movie.image, class: 'card-img' %>
+          <p><%= movie.name %></p>
+          <%#= link_to 'Delete', movie_path(movie), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 <%= link_to "ログイン", new_admin_session_path, class:"btn btn-link text-info" %>

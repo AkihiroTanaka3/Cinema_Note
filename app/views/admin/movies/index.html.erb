@@ -1,2 +1,37 @@
-<h1>Admin::Movies#index</h1>
-<p>Find me in app/views/admin/movies/index.html.erb</p>
+<div class="container">
+
+  <div class="row text-center">
+    <div class="col-db-10 my-5">
+      <div class="search">
+        <%= form_tag(admin_movies_path, method: :get) do %>
+          <%= search_field_tag :looking_for, nil, placeholder: 'Movie Title...' , :size => "40*40" %>
+          <%= button_tag type: 'submit', class: "btn btn-outline-secondary mb-1 ml-2" do %>
+          <i class="fas fa-search fa-rotate-90"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <% @movies.each do |movie| %>
+    <div class="col-md-3 my-3 text-center">
+      <div class = "movie-data">
+        <%= link_to admin_movie_path(movie['id']) do %>
+          <% if movie['poster_path'] %>
+            <p><%= image_tag 'https://image.tmdb.org/t/p/w342' + movie['poster_path'],class: "card-img" %></p>
+          <% end %>
+        <% end %>
+        <p><%= link_to movie['title'], admin_movie_path(movie['id']),class:"btn btn-link" %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="my-5 text-center" style="max-width: 300px; margin: 0 auto;">
+      <h3><%= paginate @movies %></h3>
+    </div>
+  </div>
+
+</div>
