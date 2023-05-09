@@ -1,2 +1,14 @@
-<h1>Public::Movies#index</h1>
-<p>Find me in app/views/public/movies/index.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center my-5">
+    <% @movies.each do |movie| %>
+      <div class="col-md-3 my-3 text-center">
+        <div>
+          <%= link_to movie_path(movie['id']) do %>
+          <%= image_tag 'https://image.tmdb.org/t/p/w342' + movie.image, class: 'card-img' %>
+          <% end %>
+          <p><%= link_to movie.name, movie_path(movie['id']),class:"btn btn-link" %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
