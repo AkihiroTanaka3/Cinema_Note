@@ -13,17 +13,16 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <% @movies.each do |movie| %>
-    <div class="col-md-3">
+    <div class="col-md-3 my-3 text-center">
       <div class = "movie-data">
-        <p><%= movie['title'] %></p>
         <%= link_to admin_movie_path(movie['id']) do %>
           <% if movie['poster_path'] %>
             <p><%= image_tag 'https://image.tmdb.org/t/p/w342' + movie['poster_path'],class: "card-img" %></p>
           <% end %>
         <% end %>
-        <p><%= link_to "詳細へ", admin_movie_path(movie['id']) %></p>
+        <p><%= link_to movie['title'], admin_movie_path(movie['id']),class:"btn btn-link" %></p>
       </div>
     </div>
     <% end %>

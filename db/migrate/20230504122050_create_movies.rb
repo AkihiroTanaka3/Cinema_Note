@@ -9,6 +9,7 @@ class CreateMovies < ActiveRecord::Migration[6.1]
       # t.integer  :genre_id 
       t.string   :genre_name
       t.string   :image
+      t.string   :runtime
 
       t.timestamps
     end

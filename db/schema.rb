@@ -65,12 +65,15 @@ ActiveRecord::Schema.define(version: 2023_05_05_025346) do
     t.text "overview"
     t.string "genre_name"
     t.string "image"
+    t.string "runtime"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "reviews", force: :cascade do |t|
     t.integer "movie_id"
+    t.integer "user_id"
+    t.float "rate"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

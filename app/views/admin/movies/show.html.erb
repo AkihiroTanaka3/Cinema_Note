@@ -9,9 +9,10 @@
       <h2 class="mt-5"><p><%= @movie['title'] %></p></h2>
       <p>公開年：<%= @movie['release_date'] %></p>
       <p>ジャンル：<%= @movie["genres"][0]["name"] %></p>
+      <p>上映時間：<%= @movie["runtime"] %>分</p>
       <p><%= @movie['overview'] %></p>
       <%#= link_to "投稿ページへ", new_post_path(movie_id: @movie['id']) %>
-     <%= button_to "保存する", movies_path(movie: @movie), method: :post, class:"btn btn-outline-success" %>
+     <%= button_to "保存する", admin_movies_path(movie: @movie), method: :post, class:"btn btn-outline-success" %>
     </div>
   </div>
 </div>
