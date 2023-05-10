@@ -1,7 +1,11 @@
 <div class="contaiber">
   <div class="row">
     <div class="col-md-4 offset-sm-1 my-5">
-      <%= image_tag 'https://image.tmdb.org/t/p/w342' + @movie.image, class: 'card-img' %>
+      <div class="card border-light mb-3">
+        <div class="card-header">
+        <%= image_tag 'https://image.tmdb.org/t/p/w342' + @movie.image, class: 'card-img' %>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
       <h2 class="mt-5"><%= @movie.name %></h2>
@@ -9,12 +13,12 @@
       <p>ジャンル：<%= @movie.genre_name %></p>
       <p>上映時間：<%= @movie.runtime %>分</p>
       <p>あらすじ：<%= @movie.overview %></p>
-
+        
         <%= form_with(model: [@movie, @review], url: movie_reviews_path(@movie), local: true) do |form| %>
         <% if @review.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
-
+      
             <ul>
             <% @review.errors.full_messages.each do |message| %>
               <li><%= message %></li>
@@ -23,33 +27,46 @@
           </div>
         <% end %>
 
-        <div class="field">
-          <%= form.label :評価 %>
-          <p><%= form.select :rate, [1, 2, 3, 4, 5] %></p>
-        </div>
+<!--星レビュー機能-->
+        <%= form.label :評価する %>
+          <div class="form-group" id="star">
+            <%= form.label :rate,'評価', class:'col-md-3 col-form-label' %>
+            <%= form.hidden_field :star, id: :review_star %>
+          </div>
+        
+          <script>
+            $('#star').empty();
+            var elem = document.getElementById('star');
+            var opt = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              scoreName: 'review[rate]',
+            };
+            raty(elem,opt);
+          </script>
 
-        <div class="field">
+<!--感想フォーム-->
           <%= form.label :感想を書く %>
-          <p><%= form.text_area :body, cols: 80, rows: 10,placeholder: "コメントをここに" %></p>
-        </div>
+            <div class="card border-light mb-3">
+              <div class="card-header">
+                <div class="field">
+                  <p><%= form.text_area :body, cols: 80, rows: 7, placeholder: "コメントをここに",class:"form-control-plaintext" %></p>
+                </div>
+              </div>
+            </div>
 
         <div class="actions">
-          <%= form.submit 'Create Review', class: 'btn btn-outline-primary' %>
+          <%= form.submit 'Create Review', class: 'btn btn-outline-light float-right' %>
         </div>
       <% end %>
     </div>
   </div>
+
   <div class="row">
-    <div class="col-md-10 text-center">
-      <h2>レビュー一覧</h2>
-        <% @reviews.each do |review| %>
-          <div>
-            <p><%= review.user.name %></p>
-            <p><%= review.rate %>/5点</p>
-            <p><%= review.body %></p>
-            <%= link_to 'Delete', movie_destroy_path(@movie, review), method: :delete, data: { confirm: '削除しますか？' } %>
-          </div>
-        <% end %>
+    <div class="col-md-10 offset-sm-1 text-center">
+<!--レビューを一覧表示させる-->
+      <%= render 'review_list', movie: @movie %>
     </div>
   </div>
 </div>
