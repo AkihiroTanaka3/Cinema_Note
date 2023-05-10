@@ -34,6 +34,7 @@ class Admin::MoviesController < ApplicationController
   end
 
   def create
+    # APIからデータを直接カラムに保存する
     movie = params[:movie]
     Movie.new(
       name: movie['title'],
