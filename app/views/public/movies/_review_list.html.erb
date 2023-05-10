@@ -1,0 +1,39 @@
+<h2>Review list</h2>
+<div class="card border-light mb-3">
+  <div class="card-header">
+    <table class="table">
+      <thead>
+        <tr class="table">
+          <th>ユーザー名</th>
+          <th>評価</th>
+          <th>コメント</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td><%= review.user.name %></td>
+            <td>
+              <div id="star-rate<%= review.id%>"></td>
+                <script>
+                  $('#star-rate<%= review.id%>').empty();
+                    var elem = document.getElementById('star-rate<%= review.id%>');
+                    var opt = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    starHalf: "<%= asset_path('star-half.png') %>",
+                    readOnly: true,
+                    score: <%= review.rate %>
+                  };
+                    raty(elem,opt);
+                </script>
+              </div>
+            <td style="word-wrap: break-word; width: 700px;"><%= review.body %></td>
+            <td><%= link_to '削除', movie_destroy_path(movie, review), method: :delete, data: { confirm: '削除しますか？' },class:"btn btn-outline-danger" %></td>                  
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

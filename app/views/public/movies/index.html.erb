@@ -4,12 +4,12 @@
       <div class="col-md-3 my-3 text-center">
         <div class="card border-warning mb-3">
           <div class="card-header">
-          <%= link_to movie_path(movie['id']) do %>
+          <%= link_to movie_path(movie['id']), data: {"turbolinks" => false} do %>
           <%= image_tag 'https://image.tmdb.org/t/p/w342' + movie.image, class: 'card-img' %>
           <% end %>
           </div>
           <div class="card-body">
-            <p class="card-text"><%= link_to movie.name, movie_path(movie['id']),class:"btn btn-link" %></p>
+            <p class="card-text"><%= link_to movie.name, movie_path(movie['id']), data: {"turbolinks" => false},class:"btn btn-link" %></p>
           </div>
         </div>
       </div>
