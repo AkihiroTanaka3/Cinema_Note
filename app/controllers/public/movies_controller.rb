@@ -1,6 +1,6 @@
 class Public::MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.all.page(params[:page]).per(20)
   end
 
   def show
@@ -16,7 +16,7 @@ class Public::MoviesController < ApplicationController
     if @review.save
       redirect_to movie_path(@movie), notice: 'レビューを投稿しました。'
     else
-      render 'movies/show'
+      redirect_to request.referer
     end
   end
 
