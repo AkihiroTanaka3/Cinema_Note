@@ -27,11 +27,25 @@
           </div>
         <% end %>
 
-        <div class="field">
-          <%= form.label :評価 %>
-          <p><%= form.select :rate, [1, 2, 3, 4, 5] %></p>
-        </div>
+        <!--星レビュー機能-->
+          <%= form.label :評価する %>
+          <div class="form-group" id="star">
+            <%= form.label :rate,'評価', class:'col-md-3 col-form-label' %>
+            <%= form.hidden_field :star, id: :review_star %>
+          </div>
+          <script>
+          $('#star').empty();
+          var elem = document.getElementById('star');
+          var opt = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'review[rate]',
+          };
+          raty(elem,opt);
+          </script>
 
+        <!--感想フォーム-->
         <%= form.label :感想を書く %>
         <div class="card border-light mb-3">
           <div class="card-header">
@@ -40,38 +54,18 @@
             </div>
           </div>
         </div>
-        
 
         <div class="actions">
-          <%= form.submit 'Create Review', class: 'btn btn-outline-light' %>
+          <%= form.submit 'Create Review', class: 'btn btn-outline-light float-right' %>
         </div>
       <% end %>
     </div>
   </div>
+
   <div class="row">
     <div class="col-md-10 offset-sm-1 text-center">
-      <h2>レビュー一覧</h2>
-      
-      <table class="table table-hover">
-        <thead>
-          <tr class="table-active">
-            <th scope="row">ユーザー名</th>
-            <th scope="row">評価</th>
-            <th scope="row">コメント</th>
-            <th scope="row">操作</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @reviews.each do |review| %>
-            <tr class="table-dark">
-              <td><%= review.user.name %></td>
-              <td><%= review.rate %>/5点</td>
-              <td style="word-wrap: break-word; width: 700px;"><%= review.body %></td>
-              <td><%= link_to '削除', movie_destroy_path(@movie, review), method: :delete, data: { confirm: '削除しますか？' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <!--レビューを一覧表示させる-->
+      <%= render 'review_list', movie: @movie %>
     </div>
   </div>
 </div>
