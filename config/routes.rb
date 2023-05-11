@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # ユーザー
   scope module: :public do
     root to: 'homes#top'
+    resources :user, only: [:show, :edit]
     resources :movies, only: [:index, :show, :create, :destroy] do
       delete '/reviews/:review_id', to: 'movies#destroy', as: "destroy"
       post '/reviews', to: 'movies#create'
