@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-12">
+      <div class="card bg-info mx-auto" style="max-width: 30rem;">
+        <div class="card-header text-center"><h3><strong><%= @user.name %></strong></h3></div>
+        <div class="card-body">
+          <div class="card-title"><%= @user.introduction %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-8 ml-4 text-end">
+      <% if current_user.id == @user.id %>
+      <%= link_to "退会する", unsubscribe_path, class:"btn btn-danger mr-4"  %>
+      <%= link_to '編集する', edit_user_path(@user),class:"btn btn-warning"%>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="card border-light mb-3">
+      <div class="card-header">
+        <% if @reviews.present? %>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>映画のタイトル</th>
+                  <th>評価</th>
+                  <th>レビューの内容</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @reviews.each do |review| %>
+                  <tr class="table">
+                    <td><%= link_to review.movie['name'], movie_path(review.movie), data: {"turbolinks" => false},class:"btn btn-link" %></td>
+                      <td><div id="star-rate<%= review.id%>"></td>
+                        <script>
+                          $('#star-rate<%= review.id%>').empty();
+                            var elem = document.getElementById('star-rate<%= review.id%>');
+                            var opt = {
+                            starOn: "<%= asset_path('star-on.png') %>",
+                            starOff: "<%= asset_path('star-off.png') %>",
+                            starHalf: "<%= asset_path('star-half.png') %>",
+                            readOnly: true,
+                            score: <%= review.rate %>
+                          };
+                            raty(elem,opt);
+                        </script>
+                      </div>
+                    <td style="word-wrap: break-word; width: 500px;"><%= review.body %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <p>まだレビューがありません。</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

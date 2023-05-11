@@ -16,6 +16,10 @@
             <i class="fas fa-film"></i> Movies
           <% end %>
           <li class="nav-item">
+          <%= link_to user_path(current_user),class: 'nav-link text-dark' do %>
+            <i class="fas fa-user"></i> My page
+          <% end %>
+          <li class="nav-item">
           <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-dark' do %>
             <i class="fas fa-sign-out-alt"></i> Log out
           <% end %>
