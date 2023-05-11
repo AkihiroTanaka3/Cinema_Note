@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row justify-content-center my-5">
+    <div class="col-md-8">
+      <div class="text-center">
+        <h2>退会</>
+      </div>
+      <div class="card-body">
+        <p>退会すると、あなたのアカウント情報、レビュー、お気に入り映画などのデータがすべて削除されます。</p>
+        <p>本当に退会しますか？</p>
+      </div>
+      <div class="text-center">
+        <p class="text-left"><%= link_to "退会する", withdraw_path, method: :patch, class: "btn btn-danger", data: { confirm: "本当に退会しますか？" } %></p>
+        <p class="text-left"><%= link_to "キャンセル", user_path(@user), class: "btn btn-secondary" %></p>
+      </div>
+    </div>
+  </div>
+</div>
