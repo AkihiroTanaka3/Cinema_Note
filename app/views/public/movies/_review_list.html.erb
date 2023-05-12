@@ -1,4 +1,5 @@
 <h2>Review list</h2>
+<% if @reviews.present? %>
 <div class="card border-light mb-3">
   <div class="card-header">
     <table class="table">
@@ -7,13 +8,13 @@
           <th>ユーザー名</th>
           <th>評価</th>
           <th>コメント</th>
-          <th>操作</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @reviews.each do |review| %>
           <tr>
-            <td><%= review.user.name %></td>
+            <td><%= link_to review.user.name, user_path(review.user) %></td>
             <td>
               <div id="star-rate<%= review.id%>"></td>
                 <script>
@@ -30,10 +31,17 @@
                 </script>
               </div>
             <td style="word-wrap: break-word; width: 700px;"><%= review.body %></td>
-            <td><%= link_to '削除', movie_destroy_path(movie, review), method: :delete, data: { confirm: '削除しますか？' },class:"btn btn-outline-danger" %></td>                  
+            <td>
+              <% if current_user.present? && review.user_id == current_user.id %>
+              <%= link_to '削除', movie_destroy_path(movie, review), method: :delete, data: { confirm: '削除しますか？' },class:"btn btn-outline-danger" %>
+              <% end %>
+            </td>                  
           </tr>
         <% end %>
       </tbody>
     </table>
+    <% else %>
+    <h3 class="mb-3">まだレビューがありません。</h3>
+    <% end %>
   </div>
 </div>

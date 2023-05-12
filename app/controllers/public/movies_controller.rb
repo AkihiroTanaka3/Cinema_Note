@@ -6,7 +6,8 @@ class Public::MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @review = Review.new
-    @reviews = @movie.reviews
+    @reviews = @movie.reviews.includes(:user).where(user: {membership_status: false})
+
   end
 
   def create

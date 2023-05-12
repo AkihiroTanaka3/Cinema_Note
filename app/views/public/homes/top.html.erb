@@ -18,7 +18,7 @@
       <dev>
         <%= link_to "Sign up", new_user_registration_path, class:"btn btn btn-outline-success mr-4"%>|
         <%= link_to "Log in", new_user_session_path, class:"btn btn btn-outline-success mx-4" %>|
-        <%= link_to "Guest", new_user_registration_path, class:"btn btn btn-outline-success ml-4" %>
+        <%= link_to "Guest", users_guest_sign_in_path, class:"btn btn btn-outline-success ml-4", method: :post %>
       </dev>
     </div>
   </div>
