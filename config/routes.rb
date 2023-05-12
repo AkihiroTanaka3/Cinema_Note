@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'guest_sessions/new'
+  get 'guest_sessions/create'
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "users/registrations",
     sessions: 'users/sessions'
@@ -8,6 +10,10 @@ Rails.application.routes.draw do
   devise_for :admins, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admins/sessions"
   }
+
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 
   # ユーザー
   scope module: :public do
