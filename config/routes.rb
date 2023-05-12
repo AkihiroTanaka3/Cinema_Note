@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'guest_sessions/new'
+  get 'guest_sessions/create'
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "users/registrations",
     sessions: 'users/sessions'
@@ -9,10 +11,16 @@ Rails.application.routes.draw do
     sessions: "admins/sessions"
   }
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
+
   # ユーザー
   scope module: :public do
     root to: 'homes#top'
-    resources :user, only: [:show, :edit]
+    get '/users/unsubscribe', to: 'users#unsubscribe', as: 'unsubscribe'
+    patch '/users/withdraw', to: 'users#withdraw', as: 'withdraw'
+    resources :users, only: [:show, :edit, :update]
     resources :movies, only: [:index, :show, :create, :destroy] do
       delete '/reviews/:review_id', to: 'movies#destroy', as: "destroy"
       post '/reviews', to: 'movies#create'
