@@ -24,7 +24,7 @@ class Public::MoviesController < ApplicationController
   def destroy
     @review = Review.find(params[:review_id])
     @review.destroy
-    redirect_to movie_path(params[:movie_id]), notice: 'レビューを削除しました。'
+    redirect_to admin_cinema_path(params[:movie_id]), notice: 'レビューを削除しました。'
   end
 
   private

@@ -35,6 +35,10 @@
             <i class="fas fa-sign-out-alt"></i> Log out
             <% end %>
           <li class="nav-item">
+            <%= link_to admin_users_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-users"></i> Users
+            <% end %>
+          <li class="nav-item">
             <%= link_to admin_movies_path,class: 'nav-link text-dark' do %>
             <i class="fas fa-sign-out-alt"></i> new
             <% end %>
