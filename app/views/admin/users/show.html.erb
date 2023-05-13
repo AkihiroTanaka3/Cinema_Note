@@ -32,7 +32,7 @@
               <tbody>
                 <% @reviews.each do |review| %>
                   <tr class="table">
-                    <td><%= link_to review.movie['name'], movie_path(review.movie), data: {"turbolinks" => false},class:"btn btn-link" %></td>
+                    <td><%= link_to review.movie['name'], admin_cinema_path(review.movie), data: {"turbolinks" => false},class:"btn btn-link" %></td>
                       <td><div id="star-rate<%= review.id%>"></td>
                         <script>
                           $('#star-rate<%= review.id%>').empty();
