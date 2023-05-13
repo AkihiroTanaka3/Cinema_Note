@@ -3,22 +3,22 @@
     <div class="col-md-4 offset-sm-1 my-5">
       <div class="card border-light mb-3">
         <div class="card-header">
-        <%= image_tag 'https://image.tmdb.org/t/p/w342' + @movie.image, class: 'card-img' %>
+        <%= image_tag 'https://image.tmdb.org/t/p/w500' + @movie.image, class: 'card-img' %>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mr-5">
       <h2 class="mt-5"><%= @movie.name %></h2>
       <p>公開年：<%= @movie.year %></p>
       <p>ジャンル：<%= @movie.genre_name %></p>
       <p>上映時間：<%= @movie.runtime %>分</p>
       <p>あらすじ：<%= @movie.overview %></p>
-        
+
         <%= form_with(model: [@movie, @review], url: movie_reviews_path(@movie), local: true) do |form| %>
         <% if @review.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
-      
+
             <ul>
             <% @review.errors.full_messages.each do |message| %>
               <li><%= message %></li>
@@ -33,7 +33,7 @@
             <%= form.label :rate,'評価', class:'col-md-3 col-form-label' %>
             <%= form.hidden_field :star, id: :review_star %>
           </div>
-        
+
           <script>
             $('#star').empty();
             var elem = document.getElementById('star');

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'guest_sessions/new'
-  get 'guest_sessions/create'
+  namespace :admin do
+    delete 'review/destroy'
+  end
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "users/registrations",
     sessions: 'users/sessions'
@@ -15,6 +16,15 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
 
+  # 管理者
+  namespace :admin do
+    root to: 'homes#top'
+    resources :movies, only: [:index, :new, :show, :edit, :create, :destroy, :upodate]
+    resources :users, only: [:index, :edit, :show, :update]
+    resources :cinemas, only: [:show, :destroy]
+    resources :reviews, only: [:destroy]
+  end
+
   # ユーザー
   scope module: :public do
     root to: 'homes#top'
@@ -25,15 +35,6 @@ Rails.application.routes.draw do
       delete '/reviews/:review_id', to: 'movies#destroy', as: "destroy"
       post '/reviews', to: 'movies#create'
     end
-  end
-
-  # 管理者
-  namespace :admin do
-    root to: 'homes#top'
-    resources :movies, only: [:index, :new, :show, :edit, :create, :destroy, :upodate]
-    resources :genres, only: [:index, :edit, :create, :update]
-    resources :users, only: [:index, :edit, :show, :update]
-
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
