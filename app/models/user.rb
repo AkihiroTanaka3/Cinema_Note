@@ -17,4 +17,8 @@ class User < ApplicationRecord
       user.name = "guestuser"
     end
   end
+  
+  def guest?
+    persisted? && !membership_status
+  end
 end
