@@ -1,6 +1,16 @@
 <div class="contaiber">
   <div class="row">
     <div class="col-md-4 offset-sm-1 my-5">
+      <span class="badge bg-secondary mb-3 ml-1">閲覧数 <%= @movie.read_count %></span>
+      
+        <% if user_signed_in? %>
+          <% if current_user.likes?(@movie) %>
+            <%= link_to "お気に入り中", movie_like_path(@movie), method: :delete, class: "badge bg-danger mb-3 ml-3 text-decoration-none" %>
+          <% else %>
+            <%= link_to "お気に入り", movie_likes_path(@movie), method: :post, class: "badge btn-primary mb-3 ml-3 text-decoration-none" %>
+          <% end %>
+        <% end %>
+        
       <div class="card border-light mb-3">
         <div class="card-header">
         <%= image_tag 'https://image.tmdb.org/t/p/w500' + @movie.image, class: 'card-img' %>
