@@ -11,5 +11,11 @@ class Movie < ApplicationRecord
   validates :year, presence: true
   validates :overview, presence: true
   
+  def self.ransackable_attributes(auth_object = nil)
+    ["genre_name", "name", "overview"]
+  end
   
+  def self.ransackable_associations(auth_object = nil)
+    ["genre_name", "name", "overview"]
+  end
 end

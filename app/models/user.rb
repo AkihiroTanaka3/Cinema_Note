@@ -21,4 +21,8 @@ class User < ApplicationRecord
   def guest?
     persisted? && !membership_status
   end
+  
+  def likes?(movie)
+    self.favorites.exists?(movie_id: movie.id)
+  end
 end
