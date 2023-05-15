@@ -35,6 +35,6 @@ class Users::SessionsController < Devise::SessionsController
       if @user.valid_password?(params[:user][:password]) && @user.membership_status == true
       flash[:notice] = "退会済みの為、再登録が必要です。"
       redirect_to new_user_registration_path
-      end
+    end
   end
 end

@@ -48,10 +48,5 @@ class Admin::MoviesController < ApplicationController
       redirect_to admin_movies_path
   end
   
-  # def destroy
-  #   @movie = Movie.find(params[:id])
-  #   @movie.destroy
-  #   redirect_to admin_movies_path, notice: '削除しました。'
-  # end
-
+  
 end
