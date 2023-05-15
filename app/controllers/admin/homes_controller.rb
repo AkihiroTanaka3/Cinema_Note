@@ -4,4 +4,5 @@ class Admin::HomesController < ApplicationController
     @movies = Movie.all.page(params[:page]).per(20)
   end
   
+  
 end

@@ -22,8 +22,11 @@ class Admin::UsersController < ApplicationController
    render 'edit'
   end
   end
-  
+
+  private
+
   def user_params
     params.require(:user).permit(:name, :introduction, :membership_status)
   end
+
 end
