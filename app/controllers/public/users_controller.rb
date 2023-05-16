@@ -2,10 +2,11 @@ class Public::UsersController < ApplicationController
 before_action :ensure_guest_user, only: [:edit]
 before_action :destroy_guest_user, only: [:unsubscribe]
 before_action :set_user, only: [:show, :edit, :update,]
+before_action :authenticate_user!
 
   def show
     # @reviews = current_user.reviews.includes(:movie)
-    @reviews = User.find(params[:id]).reviews.includes(:movie)
+    @reviews = User.find(params[:id]).reviews.includes(:movie).order(created_at: :desc)
   end
 
   def edit
@@ -40,6 +41,11 @@ before_action :set_user, only: [:show, :edit, :update,]
     @user = current_user
   end
 
+  def likes
+    @user = User.find(params[:id])
+    @liked_movies = @user.liked_movies.order(created_at: :desc)
+  end
+
   private
 
   def set_user
@@ -65,4 +71,9 @@ before_action :set_user, only: [:show, :edit, :update,]
   def user_params
     params.require(:user).permit(:name, :introduction)
   end
+
+  def authenticate_user!
+    redirect_to root_path, notice: 'ログインしてください。' unless user_signed_in?
+  end
+
 end
