@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :reviews, dependent: :destroy
-  has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :liked_movies, through: :favorites, source: :movie
 
   validates :name, presence: true, length: {maximum: 10}
   validates :introduction, length: {maximum: 50 }
@@ -24,5 +24,9 @@ class User < ApplicationRecord
   
   def likes?(movie)
     self.favorites.exists?(movie_id: movie.id)
+  end
+  
+  def admin?
+    admin # モデルの属性として定義されている場合、そのまま返す
   end
 end
