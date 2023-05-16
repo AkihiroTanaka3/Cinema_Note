@@ -1,0 +1,104 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand ml-5" href="/"> CInema Note</a>
+      <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav me-auto">
+
+          <!--ユーザーがログインしているとき-->
+          <% if user_signed_in? %>
+          <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-dark' do %>
+            <i class="fas fa-sign-out-alt"></i> Log out
+          <% end %>
+          <li class="nav-item">
+            <%= link_to about_path ,class: 'nav-link text-dark' do %>
+              <i class="fas fa-link"></i> About
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to movies_path ,class: 'nav-link text-dark' do %>
+              <i class="fas fa-film"></i> Movies
+            <% end %>
+          </li>
+          <li class="nav-item">
+          <%= link_to user_path(current_user),class: 'nav-link text-dark' do %>
+            <i class="fas fa-user"></i> My page
+          </li>
+          <% end %>
+          </li>
+          <div class="mt-2 ml-3 text-secondary">
+            <i class="fas fa-smile fa-spin fa-sm"></i> <strong><%= current_user.name %></strong> , Welcome！
+          </div>
+
+          <!--管理者がログインしているとき-->
+          <% elsif admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-dark' do %>
+            <i class="fas fa-sign-out-alt"></i> Log out
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to admin_users_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-users"></i> Users
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to admin_movies_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-sign-out-alt"></i> new
+            <% end %>
+          </li>
+          <%= link_to "管理者", admin_root_path, class:"mt-2 ml-3 text-secondary" %>
+
+          <!--ログインしていないとき-->
+          <% else %>
+          <li class="nav-item">
+            <%= link_to new_user_registration_path,class: 'nav-link text-dark' do %>
+              <i class="fas fa-user-plus"></i> Sign up
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_user_session_path ,class: 'nav-link text-dark' do %>
+              <i class="fas fa-sign-in-alt"></i> Log in
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to about_path ,class: 'nav-link text-dark' do %>
+              <i class="fas fa-link"></i> About
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+
+        <!--管理者ログイン中-->
+        <% if admin_signed_in? %>
+        <div class="d-flex">
+          <%= search_form_for @q_header, url: admin_root_path, class: "form-inline mt-1" do |f| %>
+            <%= f.select :genre_name_eq, Movie.distinct.order(:genre_name).pluck(:genre_name), {}, {class: "form-control"} %>
+            <%= f.search_field :name_or_genre_name_or_overview_cont,class: "form-control me-sm-3 ml-3", placeholder: "Search" %>
+            <%= button_tag type: 'submit', class: "btn btn-secondary btn-sm my-2 my-sm-0 mr-2" do %>
+          <i class="fas fa-search fa-rotate-90"></i>
+          <% end %>
+        <% end %>
+        </div>
+        <!--ユーザーログイン中-->
+        <% else user_signed_in? %>
+        <div class="d-flex">
+          <%= search_form_for @q_header, url: movies_path, class: "form-inline mt-1" do |f| %>
+            <%= f.select :genre_name_eq, Movie.distinct.order(:genre_name).pluck(:genre_name), {}, {class: "form-control"} %>
+            <%= f.search_field :name_or_genre_name_or_overview_cont,class: "form-control me-sm-3 ml-3", placeholder: "Search" %>
+            <%= button_tag type: 'submit', class: "btn btn-secondary btn-sm my-2 my-sm-0 mr-2" do %>
+          <i class="fas fa-search fa-rotate-90"></i>
+          <% end %>
+        <% end %>
+        </div>
+        <% end %>
+
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row justify-content-center my-5">
+    <% @movies.each do |movie| %>
+    <div class="col-md-3 my-3 text-center">
+      <div class="card border-success mb-3 h-100">
+        <div class="card-header">
+          <%= link_to admin_cinema_path(movie['id']) do %>
+          <%= image_tag 'https://image.tmdb.org/t/p/w342' + movie.image, class: 'card-img' %>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= link_to movie.name, admin_cinema_path(movie['id']) %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+    <div class="row">
+    <div class="my-5" style="max-width: 300px; margin: 0 auto;">
+      <h3><%= paginate @movies %></h3>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-sm-1 my-5">
+      <% if @movie['poster_path'] %>
+        <p><%= image_tag 'https://image.tmdb.org/t/p/w342' + @movie['poster_path'],class: "card-size" %></p>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <h2 class="mt-5"><p><%= @movie['title'] %></p></h2>
+      <p>公開年：<%= @movie['release_date'] %></p>
+      <p>ジャンル：<%= @movie["genres"][0]["name"] %></p>
+      <p>上映時間：<%= @movie["runtime"] %>分</p>
+      <p><%= @movie['overview'] %></p>
+      <%#= link_to "投稿ページへ", new_post_path(movie_id: @movie['id']) %>
+     <%= button_to "保存する", admin_movies_path(movie: @movie), method: :post, class:"btn btn-outline-success" %>
+    </div>
+  </div>
+</div>
+

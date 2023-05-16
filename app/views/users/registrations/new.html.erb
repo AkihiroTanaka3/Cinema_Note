@@ -1,0 +1,52 @@
+<div class="container mt-5 mb-5">
+  <div class="row my-3">
+    <div class="col-sm-8 px-sm-0 offset-sm-2 mr-4 text-center text-success">
+    <%= render "users/shared/error_messages", resource: resource %>
+      <h2><strong>〜 新規登録 〜</strong></h2>
+    </div>
+  </div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+  <div class="row my-3">
+    <div class="field text-center">
+      <%= f.label :ニックネーム %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="field text-center">
+      <%= f.label :メールアドレス %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="field text-center">
+      <%= f.label :パスワード %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="field text-center">
+      <%= f.label :パスワード（確認用） %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="actions text-center my-3">
+      <%= f.submit "新規登録する", class:"btn btn-outline-success"%>
+    </div>
+  </div>
+
+  <div class="link_btn text-end mb-3 text-center">
+    <%= link_to "Topページへ", root_path, class:"btn btn-link text-success" %>
+  </div>
+<% end %>
+</div>

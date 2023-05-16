@@ -1,0 +1,84 @@
+<div class="contaiber">
+  <div class="row">
+    <div class="col-md-4 offset-sm-1 my-5">
+      <span class="badge bg-secondary mb-3 ml-1">閲覧数 <%= @movie.read_count %></span>
+      
+        <% if user_signed_in? %>
+          <% if current_user.likes?(@movie) %>
+            <%= link_to "お気に入り中", movie_like_path(@movie), method: :delete, class: "badge bg-danger mb-3 mx-3 text-decoration-none" %>
+            <%= @movie.favorites.count %>人がお気に入り
+          <% else %>
+            <%= link_to "お気に入り", movie_likes_path(@movie), method: :post, class: "badge btn-primary mb-3 mx-3 text-decoration-none" %>
+            <%= @movie.favorites.count %>人がお気に入り
+          <% end %>
+        <% end %>
+        
+      <div class="card border-light mb-3">
+        <div class="card-header">
+        <%= image_tag 'https://image.tmdb.org/t/p/w500' + @movie.image, class: 'card-img' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mr-5">
+      <h2 class="mt-5"><%= @movie.name %></h2>
+      <p>公開年：<%= @movie.year %></p>
+      <p>ジャンル：<%= @movie.genre_name %></p>
+      <p>上映時間：<%= @movie.runtime %>分</p>
+      <p>あらすじ：<%= @movie.overview %></p>
+
+        <%= form_with(model: [@movie, @review], url: movie_reviews_path(@movie), local: true) do |form| %>
+        <% if @review.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+            <ul>
+            <% @review.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+<!--星レビュー機能-->
+        <%= form.label :評価する %>
+          <div class="form-group" id="star">
+            <%= form.label :rate,'評価', class:'col-md-3 col-form-label' %>
+            <%= form.hidden_field :star, id: :review_star %>
+          </div>
+
+          <script>
+            $('#star').empty();
+            var elem = document.getElementById('star');
+            var opt = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              scoreName: 'review[rate]',
+            };
+            raty(elem,opt);
+          </script>
+
+<!--感想フォーム-->
+          <%= form.label :感想を書く %>
+            <div class="card border-light mb-3">
+              <div class="card-header">
+                <div class="field">
+                  <p><%= form.text_area :body, cols: 80, rows: 7, placeholder: "コメントをここに",class:"form-control-plaintext" %></p>
+                </div>
+              </div>
+            </div>
+
+        <div class="actions">
+          <%= form.submit 'Create Review', class: 'btn btn-outline-light float-right' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 offset-sm-1 text-center">
+<!--レビューを一覧表示させる-->
+      <%= render 'review_list', movie: @movie %>
+    </div>
+  </div>
+</div>
