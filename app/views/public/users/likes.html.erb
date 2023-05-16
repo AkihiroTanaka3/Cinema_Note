@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-sm-2 my-5">
+      <h1>いいねした映画一覧</h1>
+      <% if @liked_movies.present? %>
+      
+      <table class="table mt-3">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+            <!-- 他のカラム -->
+          </tr>
+        </thead>
+        <tbody>
+          <% @liked_movies.each do |movie| %>
+            <tr>
+              <td><%= link_to movie.name, movie_path(movie), data: {"turbolinks" => false},class:"btn btn-link" %></td>
+              <td><%= movie.year %></td>
+              <!-- 他のカラムの表示 -->
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+      <p>いいねした映画はありません。</p>
+      <% end %>
+    </div>
+  </div>
+</div>

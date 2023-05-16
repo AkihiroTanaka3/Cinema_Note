@@ -12,18 +12,23 @@
           <!--ユーザーがログインしているとき-->
           <% if user_signed_in? %>
           <li class="nav-item">
-          <%= link_to movies_path,class: 'nav-link text-dark' do %>
-            <i class="fas fa-film"></i> Movies
-          </li>
+          <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-dark' do %>
+            <i class="fas fa-sign-out-alt"></i> Log out
           <% end %>
+          <li class="nav-item">
+            <%= link_to about_path ,class: 'nav-link text-dark' do %>
+              <i class="fas fa-link"></i> About
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to movies_path ,class: 'nav-link text-dark' do %>
+              <i class="fas fa-film"></i> Movies
+            <% end %>
+          </li>
           <li class="nav-item">
           <%= link_to user_path(current_user),class: 'nav-link text-dark' do %>
             <i class="fas fa-user"></i> My page
           </li>
-          <% end %>
-          <li class="nav-item">
-          <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-dark' do %>
-            <i class="fas fa-sign-out-alt"></i> Log out
           <% end %>
           </li>
           <div class="mt-2 ml-3 text-secondary">
@@ -52,32 +57,36 @@
           <!--ログインしていないとき-->
           <% else %>
           <li class="nav-item">
-            <%= link_to new_user_registration_path,class: 'nav-link' do %>
+            <%= link_to new_user_registration_path,class: 'nav-link text-dark' do %>
               <i class="fas fa-user-plus"></i> Sign up
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to new_user_session_path ,class: 'nav-link' do %>
+            <%= link_to new_user_session_path ,class: 'nav-link text-dark' do %>
               <i class="fas fa-sign-in-alt"></i> Log in
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to about_path ,class: 'nav-link text-dark' do %>
+              <i class="fas fa-link"></i> About
             <% end %>
           </li>
           <% end %>
         </ul>
 
-        <!--<form class="d-flex">-->
-        <!--  <input class="form-control me-sm-2" type="search" placeholder="Search">-->
-        <!--  <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
-        <!--</form>-->
-
-        <!--<div class="form-group">-->
-         <%#= form_with url: search_posts_path, local: true, method: :get, class: "form-inline" do |f| %>
-          <%#= f.text_field :keyword, class: "form-control me-sm-3", placeholder: "キーワード検索" %>
-          <%#= f.submit "Search", class: "btn btn-info btn-sm" %>
-         <%# end %>
-        <!--</div>-->
-
-
-
+        <!--管理者ログイン中-->
+        <% if admin_signed_in? %>
+        <div class="d-flex">
+          <%= search_form_for @q_header, url: admin_root_path, class: "form-inline mt-1" do |f| %>
+            <%= f.select :genre_name_eq, Movie.distinct.order(:genre_name).pluck(:genre_name), {}, {class: "form-control"} %>
+            <%= f.search_field :name_or_genre_name_or_overview_cont,class: "form-control me-sm-3 ml-3", placeholder: "Search" %>
+            <%= button_tag type: 'submit', class: "btn btn-secondary btn-sm my-2 my-sm-0 mr-2" do %>
+          <i class="fas fa-search fa-rotate-90"></i>
+          <% end %>
+        <% end %>
+        </div>
+        <!--ユーザーログイン中-->
+        <% else user_signed_in? %>
         <div class="d-flex">
           <%= search_form_for @q_header, url: movies_path, class: "form-inline mt-1" do |f| %>
             <%= f.select :genre_name_eq, Movie.distinct.order(:genre_name).pluck(:genre_name), {}, {class: "form-control"} %>
@@ -87,6 +96,7 @@
           <% end %>
         <% end %>
         </div>
+        <% end %>
 
       </div>
     </div>
