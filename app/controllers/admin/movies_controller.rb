@@ -1,5 +1,5 @@
 class Admin::MoviesController < ApplicationController
-
+  before_action :authenticate_user_or_admin!
 
   def index
     if params[:looking_for]
@@ -48,5 +48,9 @@ class Admin::MoviesController < ApplicationController
       redirect_to admin_movies_path
   end
   
+  def authenticate_user_or_admin!
+    request.path.start_with?('/admin')
+    authenticate_admin!
+  end
   
 end

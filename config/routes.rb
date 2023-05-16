@@ -28,7 +28,11 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     get '/users/unsubscribe', to: 'users#unsubscribe', as: 'unsubscribe'
     patch '/users/withdraw', to: 'users#withdraw', as: 'withdraw'
-    resources :users, only: [:show, :edit, :update]
+      resources :users, only: [:show, :edit, :update]do
+      member do 
+        get 'likes'
+      end
+    end
     resources :movies, only: [:index, :show, :create, :destroy] do
       delete '/reviews/:review_id', to: 'movies#destroy', as: "destroy"
       post '/reviews', to: 'movies#create'
@@ -36,4 +40,4 @@ Rails.application.routes.draw do
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
+  end
