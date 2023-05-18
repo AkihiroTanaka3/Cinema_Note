@@ -39,6 +39,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 #
 # preload_app!
 
+bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 daemonize
