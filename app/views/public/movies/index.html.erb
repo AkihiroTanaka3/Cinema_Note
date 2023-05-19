@@ -8,8 +8,10 @@
           <%= image_tag 'https://image.tmdb.org/t/p/w342' + movie.image, class: 'card-img' %>
           <% end %>
           </div>
-          <div class="card-body">
+          <div class="card-body d-flex flex-column justify-content-end">
             <p class="card-text"><%= link_to movie.name, movie_path(movie['id']), data: {"turbolinks" => false},class:"btn btn-link" %></p>
+            <p class="badge bg-secondary">閲覧数 <%= movie.read_count %></p>
+            <p class="badge bg-info"><%= movie.favorites.count %>人がお気に入り</p>
           </div>
         </div>
       </div>
