@@ -1,11 +1,10 @@
 class Public::UsersController < ApplicationController
 before_action :ensure_guest_user, only: [:edit]
 before_action :destroy_guest_user, only: [:unsubscribe]
-before_action :set_user, only: [:show, :edit, :update,]
+before_action :set_user, only: [:show, :edit, :update, :likes]
 before_action :authenticate_user!
 
   def show
-    # @reviews = current_user.reviews.includes(:movie)
     @reviews = User.find(params[:id]).reviews.includes(:movie).order(created_at: :desc)
   end
 
@@ -42,7 +41,6 @@ before_action :authenticate_user!
   end
 
   def likes
-    @user = User.find(params[:id])
     @liked_movies = @user.liked_movies.order(created_at: :desc)
   end
 
@@ -51,22 +49,22 @@ before_action :authenticate_user!
   def set_user
     @user = User.find(params[:id])
   end
-  
+
   def ensure_guest_user
      @user = User.find(params[:id])
-    
-    if @user.name == "guestuser"
-      
+
+    if @user.email == 'guest@example.com'
+
       redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
-  
+
   def destroy_guest_user
     if current_user.guest?
       redirect_to root_path, alert: 'ゲストユーザーは退会できません。'
     end
   end
-   
+
 
   def user_params
     params.require(:user).permit(:name, :introduction)

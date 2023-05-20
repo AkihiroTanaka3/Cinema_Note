@@ -1,0 +1,23 @@
+<!--管理者ログイン中-->
+<% if admin_signed_in? %>
+<div class="d-flex">
+  <%= search_form_for q_header, url: admin_root_path, class: "form-inline mt-1" do |f| %>
+    <%= f.select :genre_name_eq, Movie.distinct.order(:genre_name).pluck(:genre_name), {}, {class: "form-control"} %>
+    <%= f.search_field :name_or_genre_name_or_overview_cont,class: "form-control me-sm-3 ml-3", placeholder: "Search" %>
+    <%= button_tag type: 'submit', class: "btn btn-secondary btn-sm my-2 my-sm-0 mr-2" do %>
+  <i class="fas fa-search fa-rotate-90"></i>
+  <% end %>
+<% end %>
+</div>
+<!--ユーザーログイン中-->
+<% else user_signed_in? %>
+<div class="d-flex">
+  <%= search_form_for q_header, url: movies_path, class: "form-inline mt-1" do |f| %>
+    <%= f.select :genre_name_eq, Movie.distinct.order(:genre_name).pluck(:genre_name), {}, {class: "form-control"} %>
+    <%= f.search_field :name_or_genre_name_or_overview_cont,class: "form-control me-sm-3 ml-3", placeholder: "Search" %>
+    <%= button_tag type: 'submit', class: "btn btn-secondary btn-sm my-2 my-sm-0 mr-2" do %>
+  <i class="fas fa-search fa-rotate-90"></i>
+  <% end %>
+<% end %>
+</div>
+<% end %>

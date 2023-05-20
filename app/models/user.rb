@@ -19,7 +19,7 @@ class User < ApplicationRecord
   end
   
   def guest?
-    persisted? && !membership_status
+    email == 'guest@example.com'
   end
   
   def likes?(movie)
