@@ -4,12 +4,10 @@ class Public::LikesController < ApplicationController
 
   def create
     current_user.favorites.create(movie: @movie)
-    redirect_to @movie
   end
 
   def destroy
     current_user.favorites.find_by(movie: @movie).destroy
-    redirect_to @movie
   end
 
   def authenticate_user!

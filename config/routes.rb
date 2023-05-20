@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :movies, only: [:index, :show, :create, :destroy] do
       delete '/reviews/:review_id', to: 'movies#destroy', as: "destroy"
       post '/reviews', to: 'movies#create'
-      resources :likes, only: [:create, :destroy]
+      resource :likes, only: [:create, :destroy]
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

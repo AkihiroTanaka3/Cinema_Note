@@ -1,0 +1,7 @@
+<% if current_user.likes?(movie) %>
+  <%= link_to "お気に入り中", movie_likes_path(movie), method: :delete, remote: true, class: "badge bg-danger mb-3 mx-3 text-decoration-none" %>
+  <%= movie.favorites.count %>人がお気に入り
+<% else %>
+  <%= link_to "お気に入り", movie_likes_path(movie), method: :post, remote: true, class: "badge btn-primary mb-3 mx-3 text-decoration-none" %>
+  <%= movie.favorites.count %>人がお気に入り
+<% end %>

@@ -3,15 +3,9 @@
     <div class="col-md-4 offset-sm-1 my-5">
       <span class="badge bg-secondary mb-3 ml-1">閲覧数 <%= @movie.read_count %></span>
       
-        <% if user_signed_in? %>
-          <% if current_user.likes?(@movie) %>
-            <%= link_to "お気に入り中", movie_like_path(@movie), method: :delete, class: "badge bg-danger mb-3 mx-3 text-decoration-none" %>
-            <%= @movie.favorites.count %>人がお気に入り
-          <% else %>
-            <%= link_to "お気に入り", movie_likes_path(@movie), method: :post, class: "badge btn-primary mb-3 mx-3 text-decoration-none" %>
-            <%= @movie.favorites.count %>人がお気に入り
-          <% end %>
-        <% end %>
+      <span id="likes_btn_<%= @movie.id %>">
+      　<%= render "public/likes/likes", movie: @movie %>
+      </span>
         
       <div class="card border-light mb-3">
         <div class="card-header">
