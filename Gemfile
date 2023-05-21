@@ -58,6 +58,7 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'ransack'
 group :production do
   gem 'mysql2'
