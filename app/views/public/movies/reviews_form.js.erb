@@ -1,0 +1,5 @@
+// 投稿を非同期にした場合には表示させる一覧も非同期にする
+$(".reviews_area").html("<%= j(render 'public/movies/form', movie: @movie, review: @review) %>");
+$(".review_list").html("<%= j(render 'public/movies/review_list', movie: @movie, reviews: @reviews) %>");
+$(".flash_messages").html("<%= j(render 'layouts/flash_messages') %>");
+$("textarea").val('');

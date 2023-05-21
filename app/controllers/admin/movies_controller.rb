@@ -2,6 +2,7 @@ class Admin::MoviesController < ApplicationController
   before_action :authenticate_user_or_admin!
 
   def index
+    # APIのデータを検索して表示する
     if params[:looking_for]
       movie_title = params[:looking_for]
       movies = []

@@ -22,7 +22,9 @@ class Public::MoviesController < ApplicationController
     @review = @movie.reviews.build(review_params)
     @review.user = current_user
     if @review.save
-      redirect_to movie_path(@movie), notice: 'レビューを投稿しました。'
+      @reviews = @movie.reviews.order(created_at: :desc)
+      flash[:notice] = 'レビューを投稿しました。'
+      render 'reviews_form.js'
     else
       redirect_to request.referer, alert: "空欄を入力してください"
     end

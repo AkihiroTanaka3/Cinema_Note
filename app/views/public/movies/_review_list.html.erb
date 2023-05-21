@@ -1,5 +1,5 @@
 <h2>Review list</h2>
-<% if @reviews.present? %>
+<% if reviews.present? %>
 <h5 class="mb-3"><%= movie.reviews.count %>件のレビューがあります。</h5>
 <div class="card border-light mb-3">
   <div class="card-header">
@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @reviews.each do |review| %>
+        <% reviews.each do |review| %>
           <tr>
             <td><%= link_to review.user.name, user_path(review.user) %></td>
             <td>

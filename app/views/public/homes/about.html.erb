@@ -4,6 +4,7 @@
       <!--軽い説明-->
       <div class="text-center mt-2">
         <p class="text-warning pt-2">ようこそ、こちらは映画のレビューサイトです。</p>
+        <p class="text-warning pt-2">映画の評価や感想をシェアし、映画コミュニティを盛り上げよう。</p>
         <p class="text-warning py-2">アカウントをお持ちでない方は新規登録をお願いします。</p>
         <p class="text-warning pb-2">ゲストでもログインすることができます。</p>
           <%= link_to movies_path ,class: 'nav-link text-link mb-3' do %>
@@ -17,13 +18,13 @@
       <div id="example-2" class="carousel slide" data-ride="carousel" style="width:100%">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <%= image_tag 'cinema_top1.jpg' %>
+            <%= image_tag 'cinema_top1.jpg', alt: 'First slide' %>
           </div>
           <div class="carousel-item">
-            <%= image_tag 'cinema_top2.jpg' %>
+            <%= image_tag 'cinema_top2.jpg', alt: 'Second slide' %>
           </div>
           <div class="carousel-item">
-            <%= image_tag 'cinema_top3.jpg' %>
+            <%= image_tag 'cinema_top3.jpg', alt: 'Third slide' %>
           </div>
 
           <a class="carousel-control-prev" href="#example-2" role="button" data-slide="prev">

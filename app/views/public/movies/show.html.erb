@@ -2,11 +2,11 @@
   <div class="row">
     <div class="col-md-4 offset-sm-1 my-5">
       <span class="badge bg-secondary mb-3 ml-1">閲覧数 <%= @movie.read_count %></span>
-      
+
       <span id="likes_btn_<%= @movie.id %>">
       　<%= render "public/likes/likes", movie: @movie %>
       </span>
-        
+
       <div class="card border-light mb-3">
         <div class="card-header">
         <%= image_tag 'https://image.tmdb.org/t/p/w500' + @movie.image, class: 'card-img' %>
@@ -20,59 +20,15 @@
       <p>上映時間：<%= @movie.runtime %>分</p>
       <p>あらすじ：<%= @movie.overview %></p>
 
-        <%= form_with(model: [@movie, @review], url: movie_reviews_path(@movie), local: true) do |form| %>
-        <% if @review.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
-
-            <ul>
-            <% @review.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-<!--星レビュー機能-->
-        <%= form.label :評価する %>
-          <div class="form-group" id="star">
-            <%= form.label :rate,'評価', class:'col-md-3 col-form-label' %>
-            <%= form.hidden_field :star, id: :review_star %>
-          </div>
-
-          <script>
-            $('#star').empty();
-            var elem = document.getElementById('star');
-            var opt = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              scoreName: 'review[rate]',
-            };
-            raty(elem,opt);
-          </script>
-
-<!--感想フォーム-->
-          <%= form.label :感想を書く %>
-            <div class="card border-light mb-3">
-              <div class="card-header">
-                <div class="field">
-                  <p><%= form.text_area :body, cols: 80, rows: 7, placeholder: "コメントをここに",class:"form-control-plaintext" %></p>
-                </div>
-              </div>
-            </div>
-
-        <div class="actions">
-          <%= form.submit 'Create Review', class: 'btn btn-outline-light float-right' %>
-        </div>
-      <% end %>
+      <div class="reviews_area">
+        <%= render 'public/movies/form',movie: @movie, review: @review %>
+      </div>
     </div>
-  </div>
 
   <div class="row">
-    <div class="col-md-10 offset-sm-1 text-center">
+    <div class="col-md-10 offset-sm-1 text-center review_list">
 <!--レビューを一覧表示させる-->
-      <%= render 'review_list', movie: @movie %>
+      <%= render 'review_list', movie: @movie, reviews: @reviews %>
     </div>
   </div>
 </div>
