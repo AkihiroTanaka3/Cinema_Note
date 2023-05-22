@@ -14,4 +14,17 @@ class Movie < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     ["genre_name", "name", "overview"]
   end
+  
+  def self.create_with_api(movie)
+      movie = Movie.new(
+      name: movie['title'],
+      year: movie['release_date'],
+      genre_name: movie["genres"][0]["name"],
+      image: movie['poster_path'],
+      overview: movie['overview'],
+      runtime: movie['runtime'],
+      )
+
+      movie.save
+  end
 end

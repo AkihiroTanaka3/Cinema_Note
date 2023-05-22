@@ -36,17 +36,12 @@ class Admin::MoviesController < ApplicationController
 
   def create
     # APIからデータを直接カラムに保存する
-    movie = params[:movie]
-    Movie.new(
-      name: movie['title'],
-      year: movie['release_date'],
-      genre_name: movie["genres"][0]["name"],
-      image: movie['poster_path'],
-      overview: movie['overview'],
-      runtime: movie['runtime'],
-      )
-      .save
-      redirect_to admin_movies_path
+    if Movie.create_with_api(params[:movie])
+      redirect_to admin_movies_path, notice: "保存しました。"
+    else
+      flash[:alert] = '保存に失敗しました。'
+      render :show
+    end
   end
   
   def authenticate_user_or_admin!

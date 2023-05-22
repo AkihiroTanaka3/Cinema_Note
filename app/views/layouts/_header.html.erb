@@ -1,20 +1,19 @@
 <header class="sticky-top">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand ml-5" href="/"> CInema Note</a>
-      <!--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">-->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarColor03">
-        <ul class="navbar-nav me-auto">
-
+      <a class="navbar-brand ml-5 mx-auto" href="/"> CInema Note</a>
+      <div class="collapse navbar-collapse flex-grow-0 align-items-center direction-row" id="navbarColor03">
+        <ul class="navbar-nav d-flex ">
           <!--ユーザーがログインしているとき-->
           <% if user_signed_in? %>
           <li class="nav-item">
           <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-dark' do %>
             <i class="fas fa-sign-out-alt"></i> Log out
           <% end %>
+          </li>
           <li class="nav-item">
             <%= link_to about_path ,class: 'nav-link text-dark' do %>
               <i class="fas fa-link"></i> About
@@ -28,10 +27,9 @@
           <li class="nav-item">
           <%= link_to user_path(current_user),class: 'nav-link text-dark' do %>
             <i class="fas fa-user"></i> My page
-          </li>
           <% end %>
           </li>
-          <div class="mt-2 ml-3 text-secondary">
+          <div class="text-secondary d-flex align-items-center">
             <i class="fas fa-smile fa-spin fa-sm"></i> <strong><%= current_user.name %></strong> , Welcome！
           </div>
 
@@ -73,10 +71,8 @@
           </li>
           <% end %>
         </ul>
-
-        <%= render 'layouts/search', q_header: @q_header %>
-
       </div>
+      <%= render 'layouts/search', q_header: @q_header %>
     </div>
   </nav>
 </header>
