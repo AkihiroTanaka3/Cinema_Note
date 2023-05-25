@@ -8,7 +8,7 @@
           <%= image_tag 'https://image.tmdb.org/t/p/w342' + movie.image, class: 'card-img' %>
           <% end %>
         </div>
-        <div class="card-body">
+        <div class="card-body d-flex flex-column justify-content-end">
           <p class="card-text"><%= link_to movie.name, admin_cinema_path(movie['id']) %></p>
         </div>
       </div>
