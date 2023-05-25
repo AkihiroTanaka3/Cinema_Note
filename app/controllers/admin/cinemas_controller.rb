@@ -10,7 +10,7 @@ class Admin::CinemasController < ApplicationController
   def destroy
     @movie = Movie.find(params[:id])
     @movie.destroy
-    redirect_to admin_root_path, notice: '映画を削除しました。'
+    redirect_to admin_root_path, notice: "#{@movie.name}を削除しました。"
   end
   
   def authenticate_user_or_admin!
