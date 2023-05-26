@@ -1,4 +1,5 @@
 # Cinema Note
+<img width="1179" alt="スクリーンショット 2023-05-26 16 29 10" src="https://github.com/AkihiroTanaka3/Cinema_Note/assets/126536571/0fa228f9-a8f5-403b-98e3-b286241df747">
 
 ## サイト概要
 ### サイトテーマ
@@ -22,7 +23,14 @@
 - 観た映画に対するレビューや評価を書くとき
 
 ## 設計書
-未定
+- ER図<br>
+https://drive.google.com/file/d/1ki3gOEI1_wNsO-tBQZuSVSfHkBaNZqE7/view?usp=sharing
+
+- アプリケーション詳細設計書<br>
+https://docs.google.com/spreadsheets/d/1poaD7wPP75vyD4exHmYEXZaaGzLkCtG843pa-JmgAyY/edit?usp=sharing
+
+- テーブル定義書<br>
+https://docs.google.com/spreadsheets/d/1Z_HoaXnmYfovKHZ3qR5zpIvW5ymV8-kIQJh0iGoxG28/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -32,5 +40,8 @@
 - IDE：Cloud9
 
 ## 使用素材
-- The Movie Database (TMDb)
-- https://www.themoviedb.org/?language=ja-JP  (TMDB API)
+- The Movie Database (TMDb)<br>
+https://www.themoviedb.org/?language=ja-JP  (TMDB API)
+
+- Unsplash<br>
+https://unsplash.com/ja
