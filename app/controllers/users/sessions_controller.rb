@@ -34,6 +34,7 @@ class Users::SessionsController < Devise::SessionsController
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   end
+  # return if !@userはユーザーが存在しないときに終了させる
   def reject_withdraw_user
     @user = User.find_by(email: params[:user][:email])
     return if !@user

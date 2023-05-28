@@ -22,7 +22,7 @@ class Public::MoviesController < ApplicationController
     @review = @movie.reviews.build(review_params)
     @review.user = current_user
     if @review.save
-      @reviews = @movie.reviews.order(created_at: :desc)
+      @reviews = @movie.reviews.includes(:user).where(user: {membership_status: false}).order(created_at: :desc)
       flash[:notice] = 'レビューを投稿しました。'
       render 'reviews_form.js'
     else
