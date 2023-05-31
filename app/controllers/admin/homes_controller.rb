@@ -1,6 +1,7 @@
 class Admin::HomesController < ApplicationController
   before_action :authenticate_user_or_admin!
   
+  # ランサックの記述を追加
   def top
     @movies = Movie.all.page(params[:page]).per(20)
       @q = Movie.ransack(params[:q])

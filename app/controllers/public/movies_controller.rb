@@ -2,7 +2,7 @@ class Public::MoviesController < ApplicationController
     before_action :authenticate_user!
 
   def index
-    # @movies = Movie.all.page(params[:page]).per(20)
+    # ランサックの記述を追加
     @q = Movie.ransack(params[:q])
     @movies = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(20)
     if @q_header
