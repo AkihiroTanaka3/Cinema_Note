@@ -1,5 +1,5 @@
 # Cinema Note
-<img width="1179" alt="スクリーンショット 2023-05-26 16 29 10" src="https://github.com/AkihiroTanaka3/Cinema_Note/assets/126536571/0fa228f9-a8f5-403b-98e3-b286241df747">
+<img width="1179" alt="スクリーンショット 2023-05-29 17 46 46" src="https://github.com/AkihiroTanaka3/Cinema_Note/assets/126536571/33c31c09-f9f9-4db4-bde5-e8c063025d77">
 
 ## サイト概要
 ### サイトテーマ
