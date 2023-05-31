@@ -6,6 +6,7 @@
       <% end %>
     </div>
     <div class="col-md-6">
+      <!--APIのデータを指定-->
       <h2 class="mt-5"><p><%= @movie['title'] %></p></h2>
       <p>公開年：<%= @movie['release_date'] %></p>
       <p>ジャンル：<%= @movie["genres"][0]["name"] %></p>
