@@ -1,13 +1,13 @@
 <div class="contaiber">
-  <div class="row">
-    <div class="col-md-4 offset-sm-1 my-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 col-sm-11 col-md-4 my-5">
       <div class="card border-light mb-3">
         <div class="card-header">
         <%= image_tag 'https://image.tmdb.org/t/p/w500' + @movie.image, class: 'card-img' %>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-10 col-sm-11 col-md-6">
       <h2 class="mt-5"><%= @movie.name %></h2>
       <p>公開年：<%= @movie.year %></p>
       <p>ジャンル：<%= @movie.genre_name %></p>
@@ -20,8 +20,8 @@
     
   </div>
 
-  <div class="row">
-    <div class="col-md-10 offset-sm-1 text-center">
+  <div class="row d-flex justify-content-center">
+    <div class="col-11 col-md-10 text-center">
 <!--レビューを一覧表示させる-->
       <h2>Review list</h2>
       <% if @reviews.present? %>

@@ -11,7 +11,7 @@
   </div>
 
   <div class="row mb-5">
-    <div class="col-md-8 ml-4 text-end">
+    <div class="col-11 col-sm-9 col-md-8 ml-4 text-end">
       <% if current_user == @user && !@user.email.include?("guest") %>
       <%= link_to "お気に入り", likes_user_path(@user), class: "btn btn-primary mr-4" %>
       <%= link_to '編集する', edit_user_path(@user),class:"btn btn-warning mr-4"%>
@@ -20,8 +20,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="card border-light mb-3">
+  <div class="row d-flex justify-content-center">
+    <div class="col-sm-12 card border-light mb-3">
       <div class="card-header">
         <% if @reviews.present? %>
           <div class="table-responsive">

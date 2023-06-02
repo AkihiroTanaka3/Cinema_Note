@@ -2,7 +2,7 @@
   <!--管理者ログイン中-->
   <% if admin_signed_in? %>
     <%= search_form_for q_header, url: admin_root_path, class: "form-inline flex-nowrap" do |f| %>
-      <%= f.select :genre_name_eq, Movie.distinct.order(:genre_name).pluck(:genre_name), {}, {class: "form-control"} %>
+      <%= f.select :genre_name_eq, Movie.distinct.order(:genre_name).pluck(:genre_name), {}, {class: "form-control ml-2"} %>
       <%= button_tag type: 'submit', class: "btn btn-secondary btn-sm my-2 my-sm-0 mr-2 ml-3" do %>
     <i class="fas fa-search fa-rotate-90"></i>
         <% end %>
@@ -16,7 +16,7 @@
   <!--ユーザーログイン中-->
   <% else user_signed_in? %>
     <%= search_form_for q_header, url: movies_path, class: "form-inline flex-nowrap" do |f| %>
-      <%= f.select :genre_name_eq, Movie.distinct.order(:genre_name).pluck(:genre_name), {}, {class: "form-control"} %>
+      <%= f.select :genre_name_eq, Movie.distinct.order(:genre_name).pluck(:genre_name), {}, {class: "form-control ml-2"} %>
       <%= button_tag type: 'submit', class: "btn btn-secondary btn-sm my-2 my-sm-0 mr-2 ml-3" do %>
     <i class="fas fa-search fa-rotate-90"></i>
       <% end %>

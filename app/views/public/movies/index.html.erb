@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center my-5">
     <% @movies.each do |movie| %>
-      <div class="col-md-3 my-3 text-center">
+      <div class="col-6 col-sm-4 col-md-3 my-3 text-center">
         <div class="card border-warning mb-3 h-100">
           <div class="card-header">
           <%= link_to movie_path(movie['id']), data: {"turbolinks" => false} do %>
