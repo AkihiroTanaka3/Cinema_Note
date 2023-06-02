@@ -15,7 +15,7 @@
 
   <div class="row justify-content-center">
     <% @movies.each do |movie| %>
-    <div class="col-md-3 my-3 text-center">
+    <div class="col-6 col-sm-4 col-md-3 my-3 text-center">
       <div class="card border-secondary mb-3 h-100">
         <div class="card-header">
         <%= link_to admin_movie_path(movie['id']) do %>
