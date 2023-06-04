@@ -9,9 +9,9 @@
 
         <dev>
           <% if user_signed_in? %>
-            <%= link_to "Movie..", movies_path, class:"btn btn btn-outline-success mx-4" %>
+            <%= link_to "Log out..", destroy_user_session_path, method: :delete, class:"btn btn btn-outline-success mx-4" %>
           <% elsif admin_signed_in? %>
-            <%= link_to "Movie..", admin_movies_path, class:"btn btn btn-outline-success mx-4" %>
+            <%= link_to "Log out..", destroy_admin_session_path, method: :delete, class:"btn btn btn-outline-success mx-4" %>
           <% else %>
             <%= link_to "Sign up", new_user_registration_path, class:"btn btn btn-outline-success mr-4"%>|
             <%= link_to "Log in", new_user_session_path, class:"btn btn btn-outline-success mx-4" %>|
