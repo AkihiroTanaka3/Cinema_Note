@@ -1,7 +1,6 @@
 class Public::UsersController < ApplicationController
-before_action :ensure_guest_user, only: [:edit]
-before_action :destroy_guest_user, only: [:unsubscribe]
-before_action :set_user, only: [:show, :edit, :update, :likes]
+before_action :check_guest_user, only: [:edit, :unsubscribe]
+before_action :set_user, only: [:show, :edit, :likes]
 before_action :authenticate_user!
 
   def show
@@ -50,21 +49,11 @@ before_action :authenticate_user!
     @user = User.find(params[:id])
   end
 
-  def ensure_guest_user
-     @user = User.find(params[:id])
-
-    if @user.email == 'guest@example.com'
-
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
-    end
-  end
-
-  def destroy_guest_user
+  def check_guest_user
     if current_user.guest?
-      redirect_to root_path, alert: 'ゲストユーザーは退会できません。'
+      redirect_to root_path, alert: 'ゲストユーザーは編集できません。'
     end
   end
-
 
   def user_params
     params.require(:user).permit(:name, :introduction)
