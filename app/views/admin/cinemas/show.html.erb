@@ -14,7 +14,7 @@
       <p>上映時間：<%= @movie.runtime %>分</p>
       <p>あらすじ：<%= @movie.overview %></p>
       <div class="mt-5 mr-3 text-end">
-        <%= link_to 'Delete', admin_cinema_path(@movie), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
+        <%= link_to 'Delete', admin_cinema_path(@movie), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn btn-outline-danger' %>
       </div>
     </div>
     

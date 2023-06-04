@@ -2,6 +2,7 @@
 <!--APIからデータを取得-->
   <div class="row text-center">
     <div class="col-db-10 my-5">
+      <!--TMDb内のデータを検索する用-->
       <div class="search">
         <%= form_tag(admin_movies_path, method: :get) do %>
           <%= search_field_tag :looking_for, nil, placeholder: 'Movie Title...' , :size => "40*40" %>
