@@ -1,5 +1,6 @@
 class Public::MoviesController < ApplicationController
     before_action :authenticate_user!
+    before_action :destroy_review_user, only: [:destroy]
 
   def index
     # ランサックの記述を追加
@@ -44,6 +45,14 @@ class Public::MoviesController < ApplicationController
 
   def authenticate_user!
     redirect_to root_path, notice: 'ログインしてください。' unless user_signed_in?
+  end
+  
+  def destroy_review_user
+    review = Review.find(params[:review_id])
+    
+    if review.user_id != current_user.id
+      redirect_to root_path, alert: '他の人のレビューは削除できません。'
+    end
   end
 
 end
