@@ -40,7 +40,7 @@ class Admin::MoviesController < ApplicationController
       redirect_to admin_movies_path, notice: "保存しました。"
     else
       flash[:alert] = '保存に失敗しました。'
-      render :show
+      render :index
     end
   end
   
