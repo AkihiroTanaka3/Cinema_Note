@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
 before_action :check_guest_user, only: [:edit, :unsubscribe]
-before_action :set_user, only: [:show, :edit, :likes]
+before_action :set_user, only: [:show, :edit, :likes, :update]
 before_action :authenticate_user!
 
   def show
